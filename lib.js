@@ -14,4 +14,6 @@ this.log4js = require('log4js');
 
 //expose classes for multiple selenium sessions creation
 this.webdrivermanager = require('./lib/util/webdrivermanager');
-this.runner = require('./index.js');
+
+// Expose Arrow itself for automation.
+this.runner = require('./index');

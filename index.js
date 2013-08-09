@@ -25,7 +25,7 @@
 //    , "sh" : ["--seleniumHost"]
 // }
 
-var MasterArrow = function(params, sliceOff) {
+var ArrowModule = function(params, sliceOff) {
         // Libraries
     var Arrow = require("./lib/interface/arrow"),
         ArrowSetup = require('./lib/util/arrowsetup'),
@@ -35,7 +35,7 @@ var MasterArrow = function(params, sliceOff) {
         self = this,
         knownOpts, shortHands = {};
 
-    // Being nice and setting this if someone forgets.
+    // number of leading args to ignore (e.g. node, arrow)
     sliceOff = sliceOff || 0;
 
     // Configuration Options. Used by 'nopt'
@@ -281,9 +281,8 @@ var MasterArrow = function(params, sliceOff) {
         }
     };
 
-    // WIP
     self.startArrow = function (config, options) {
-        // TODO: arrowSetup move to Arrow
+        // TODO: move arrow setup to Arrow
         var arrow = new Arrow(config, options),
             arrowSetup = new ArrowSetup(config, options);
 
@@ -296,9 +295,9 @@ var MasterArrow = function(params, sliceOff) {
 };
 
 if (require.main === module) {
-    // Run from commandline
-    new MasterArrow(process.argv, 2);
+    // This is being run from the command line.
+    new ArrowModule(process.argv, 2);
 } else {
     // This is being accessed as a module.
-    module.exports = MasterArrow;
+    module.exports = ArrowModule;
 }
